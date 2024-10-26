@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5x5 Grid with Diagonals and Colored Circles</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 5px;
+        }
+
+        .grid-item {
+            background-color: rgb(185, 185, 185);
+            width: 60px;
+            height: 60px;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        /* Adding diagonals to specific grid items */
+        .grid-item.diagonal::before,
+        .grid-item.diagonal::after {
+            content: '';
+            position: absolute;
+            background-color: hsl(0, 0%, 100%);
+            border: 1px solid rgb(73, 59, 59);
+            border-radius: 7px;
+            width: 5px;
+            height: 85px;
+        }
+
+        /* First diagonal (top-left to bottom-right) */
+        .grid-item.diagonal::before {
+            transform: rotate(45deg);
+            top: -13px;
+            left: 27px;
+        }
+
+        /* Second diagonal (top-right to bottom-left) */
+        .grid-item.diagonal::after {
+            transform: rotate(-45deg);
+            top: -13px;
+            left: 27px;
+        }
+
+        /* Adding small circular pieces for specified squares */
+        .grid-item.quarters div {
+            
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+
+        /* Assign different colors to each set of four circles */
+        .grid-item.circle1 { color: red; }
+        .grid-item.circle2 { color: blue; }
+        .grid-item.circle3 { color: green; }
+        .grid-item.circle4 { color: yellow; }
+
+        /* Positioning the circles within each quadrant */
+        .grid-item.quarters div:nth-child(1) {
+            top: 22px;
+            left: 0px;
+        }
+
+        .grid-item.quarters div:nth-child(2) {
+            top: 0px;
+            right: 22px;
+        }
+
+        .grid-item.quarters div:nth-child(3) {
+            bottom: 0px;
+            left: 22px;
+        }
+
+        .grid-item.quarters div:nth-child(4) {
+            bottom: 22px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- 25 grid items (5x5) -->
+        <div class="grid-item"></div>
+        <div class="grid-item ">
+            <div></div><div></div><div></div><div></div> <!-- (1,2) -->
+        </div>
+        <div class="grid-item diagonal quarters circle1">
+            <div></div><div></div><div></div><div></div> <!-- (3,1) -->
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+
+        <div class="grid-item diagonal quarters circle2">
+            <div></div><div></div><div></div><div></div> <!-- (3,1) -->
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item diagonal"></div> <!-- (3,3) -->
+        <div class="grid-item"></div>
+        <div class="grid-item diagonal quarters circle3">
+            <div></div><div></div><div></div><div></div> <!-- (3,5) -->
+        </div>
+
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item diagonal quarters circle4">
+            <div></div><div></div><div></div><div></div> <!-- (5,3) -->
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+    </div>
+</body>
+</html>
